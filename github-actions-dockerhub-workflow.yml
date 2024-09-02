@@ -1,0 +1,38 @@
+GitHub_Actions_Workflow:
+  Trigger_Event:
+    - Code_Push_or_Pull_Request
+    - Manual_Trigger
+    - Scheduled_Event
+
+  Authenticate_to_Docker_Hub:
+    - Use_Docker_Hub_Credentials
+    - Set_up_Secrets_Environment_Variables
+
+  Pull_Docker_Image_from_Docker_Hub:
+    - Download_Required_Docker_Image
+
+  Run_Tests_in_GitHub_Actions:
+    - Create_Container_from_Docker_Image
+    - Execute_Tests_Inside_Container
+    - Log_Test_Results_in_GitHub_Actions
+
+  Build_Docker_Image_if_needed:
+    - Package_Application_into_a_Docker_Image
+
+  Push_Docker_Image_to_Docker_Hub:
+    - Upload_New_Docker_Image_for_Deployment
+
+Docker_Hub_Role:
+  Store_Docker_Images:
+    - Pre-built_Images_for_Environments
+    - New_Images_from_GitHub_Actions
+
+  Provide_Environments:
+    - Supply_Docker_Images_for_Testing_and_Deployment
+
+Outcome:
+  Test_Results:
+    - Results_Logged_in_GitHub_Actions
+
+  Docker_Images:
+    - Images_Stored_in_Docker_Hub_for_Future_Use

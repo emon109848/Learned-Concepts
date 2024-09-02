@@ -1,0 +1,49 @@
+How_to_Use_Docker:
+  Dockerfile:
+    - Define_Base_Image:
+        - Specify_OS (e.g., `FROM ubuntu:20.04`)
+        - Set_Working_Directory (e.g., `WORKDIR /app`)
+    - Install_Dependencies:
+        - Update_Package_Lists (e.g., `RUN apt-get update`)
+        - Install_Software (e.g., `RUN apt-get install -y python3`)
+    - Copy_Application_Code:
+        - Copy_Files_into_Image (e.g., `COPY . /app`)
+    - Set_Environment_Variables:
+        - Use `ENV` to set variables (e.g., `ENV APP_ENV=production`)
+    - Run_Commands:
+        - Use `RUN` for BASH scripting (e.g., `RUN ./install_dependencies.sh`)
+        - Use `CMD` to specify default command (e.g., `CMD ["python3", "app.py"]`)
+
+  docker-compose.yml:
+    - Define_Services:
+        - App_Service:
+            - Build_Image_from_Dockerfile (e.g., `build: .`)
+            - Map_Ports (e.g., `ports: - "5000:5000"`)
+            - Set_Environment_Variables (e.g., `environment: - APP_ENV=development`)
+        - Database_Service:
+            - Use_Pre-built_Image (e.g., `image: postgres:13`)
+            - Map_Ports (e.g., `ports: - "5432:5432"`)
+            - Set_Environment_Variables (e.g., `environment: - POSTGRES_PASSWORD=example`)
+    - Define_Networks:
+        - Internal_Communication_Between_Services (e.g., `networks: default:`)
+    - Define_Volumes:
+        - Persistent_Data_Storage (e.g., `volumes: - db_data:/var/lib/postgresql/data`)
+
+  Additional_Concepts:
+    - Docker_Volumes:
+        - Use_for_Persistent_Storage (e.g., `volumes: - db_data:/var/lib/postgresql/data`)
+        - Manage_Data_Across_Containers
+    - Docker_Networking:
+        - Use_Custom_Networks_for_Containers (e.g., `networks:`)
+        - Ensure_Container_Communication
+    - Docker_Environment_Management:
+        - Use `.env` Files for Environment Variables (e.g., `env_file: .env`)
+        - Securely_Store_Sensitive_Information
+
+  Outcome:
+    - Consistent_Development_Environment:
+        - Reproduce_Environment_Across_Teams
+    - Simplified_Application_Deployment:
+        - Deploy_Containers_to_Production_with_Consistent_Configuration
+    - Improved_Resource_Management:
+        - Efficiently_Manage_Dependencies_and_Resources_in_Containers
